@@ -8,10 +8,36 @@
     <title>Byron Cole Lawlis</title>
 </head>
 
-<body>
+<body onload="getGravatarURL()">
+    <!-- <img src="getGravatarURL();" alt="Byron Cole Lawlis" /> -->
+    <!-- <img src="pixel.gif" onload="this.onload=null; this.src=getGravatarURL();" /> -->
+    <!-- <img id="me" alt="Byron Cole Lawlis"> -->
+    <img class="img-circle" id="image" />
     <h1>Byron Cole Lawlis</h1>
     <p>Hi, I'm Byron. I'm a software developer at West Edge Collective. Check out our <a
             href="https://westedge.us/portfolio/" target="_wec">portfolio</a>!</p>
+
+    <script>
+        var email = "bclaw8300@gmail.com";
+        function getGravatarURL() {
+            var gravatar_image_url = get_gravatar_image_url(email, 200);
+
+            // $('#url').html(gravatar_image_url);
+
+            document.getElementById("image").src = gravatar_image_url;
+        };
+
+
+        function get_gravatar_image_url(email, size, default_image, allowed_rating, force_default) {
+            email = typeof email !== 'undefined' ? email : 'john.doe@example.com';
+            size = (size >= 1 && size <= 2048) ? size : 80;
+            default_image = typeof default_image !== 'undefined' ? default_image : 'mm';
+            allowed_rating = typeof allowed_rating !== 'undefined' ? allowed_rating : 'g';
+            force_default = force_default === true ? 'y' : 'n';
+
+            return ("https://secure.gravatar.com/avatar/" + md5(email.toLowerCase().trim()) + "?size=" + size + "&default=" + encodeURIComponent(default_image) + "&rating=" + allowed_rating + (force_default === 'y' ? "&forcedefault=" + force_default : ''));
+        }
+    </script>
 </body>
 
 </html>
